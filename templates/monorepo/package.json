@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev:backend": "bun --filter=backend run dev",
+    "dev:frontend": "bun --filter=frontend run dev",
+    "build:backend": "bun --filter=backend run build",
+    "build:frontend": "bun --filter=frontend run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10"
+  }
+}
