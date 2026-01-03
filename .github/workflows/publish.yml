@@ -48,4 +48,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish to npm
-        run: bun publish --access public
+        env:
+          NPM_CONFIG_TOKEN: ${{ env.NODE_AUTH_TOKEN }}
+        run: bun publish --access public --tolerate-republish
