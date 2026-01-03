@@ -1,4 +1,4 @@
-# create-elysiajs
+# create-ely
 
 Scaffold ElysiaJS projects with ease using [Bun](https://bun.sh).
 
@@ -7,7 +7,7 @@ Scaffold ElysiaJS projects with ease using [Bun](https://bun.sh).
 Create a new ElysiaJS project:
 
 ```bash
-bun create elysiajs my-project
+bunx create-ely my-project
 ```
 
 You'll be prompted to choose between:
@@ -42,7 +42,7 @@ To test the CLI locally:
 
 ```bash
 bun link
-bun create elysiajs
+bunx create-ely
 ```
 
 ## License

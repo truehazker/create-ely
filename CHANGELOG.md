@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-01-03
+
+### Changed
+
+- Renamed project to `create-ely`
+
 ## [0.1.0] - 2026-01-03
 
 ### Added
 
-- Initial CLI tool for scaffolding Elysiajs projects
+- Initial CLI tool for scaffolding ElysiaJS projects
 - Backend template as a submodule
 - Frontend template with React and TanStack Router
 - Monorepo template structure
