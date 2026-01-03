@@ -1,6 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { api } from '@/shared/api/client';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { UserPlus } from 'lucide-react';
+import { api } from '@/shared/api/client';
 
 export const Route = createFileRoute('/users/')({
   component: Users,
@@ -28,13 +28,13 @@ function Users() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold text-gray-900">Users</h1>
-          <a
-            href="/users/new"
+          <Link
+            to="/users/new"
             className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-colors"
           >
             <UserPlus size={20} />
             Create New User
-          </a>
+          </Link>
         </div>
 
         <div className="bg-white rounded-lg shadow-md overflow-hidden">

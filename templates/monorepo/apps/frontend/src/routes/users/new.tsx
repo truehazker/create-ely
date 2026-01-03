@@ -25,8 +25,7 @@ function NewUser() {
       const { data, error: apiError } = await api.users.post(formData);
 
       if (apiError) {
-        setError(apiError.value as string);
-        setIsSubmitting(false);
+        setError(apiError.value);
         return;
       }
 
@@ -35,6 +34,7 @@ function NewUser() {
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create user');
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -50,7 +50,9 @@ function NewUser() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New User</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">
+          Create New User
+        </h1>
 
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
@@ -144,4 +146,3 @@ function NewUser() {
     </div>
   );
 }
-
