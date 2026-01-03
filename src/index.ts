@@ -13,7 +13,7 @@ import * as clack from '@clack/prompts';
 async function main() {
   console.clear();
 
-  clack.intro('create-elysiajs');
+  clack.intro('create-ely');
 
   // Check if project name was passed as argument
   const args = process.argv.slice(2);

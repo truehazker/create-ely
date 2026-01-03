@@ -20,7 +20,7 @@ The backend is a **git submodule** at `templates/monorepo/apps/backend` pointing
 
 ```bash
 # Clone with submodules
-git clone --recursive https://github.com/truehazker/create-elysiajs
+git clone --recursive https://github.com/truehazker/create-ely
 
 # Or if already cloned
 git submodule update --init
@@ -30,7 +30,7 @@ git submodule update --init
 
 | Repo | Version | Purpose |
 | ---- | ------- | ------- |
-| `create-elysiajs` | Own version | CLI tool, frontend template, monorepo setup |
+| `create-ely` | Own version | CLI tool, frontend template, monorepo setup |
 | `elysia-boilerplate` | Pinned tag | Backend template (submodule) |
 
 The submodule is pinned to a **specific release tag** (e.g., `v0.4.4`). This ensures:

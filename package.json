@@ -1,6 +1,6 @@
 {
-  "name": "create-elysiajs",
-  "version": "0.1.0",
+  "name": "create-ely",
+  "version": "0.1.1",
   "description": "Scaffold production-ready ElysiaJS projects with ease using Bun - choose between backend-only or full-stack monorepo templates",
   "type": "module",
   "author": {
@@ -10,11 +10,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/truehazker/create-elysiajs.git"
+    "url": "git+https://github.com/truehazker/create-ely.git"
   },
-  "homepage": "https://github.com/truehazker/create-elysiajs#readme",
+  "homepage": "https://github.com/truehazker/create-ely#readme",
   "bugs": {
-    "url": "https://github.com/truehazker/create-elysiajs/issues"
+    "url": "https://github.com/truehazker/create-ely/issues"
   },
   "keywords": [
     "elysiajs",
@@ -36,12 +36,12 @@
     "tanstack-router"
   ],
   "bin": {
-    "create-elysiajs": "./src/index.ts"
+    "create-ely": "./src/index.ts"
   },
   "files": ["src", "templates", "README.md", "LICENSE"],
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "bun build src/index.ts --compile --outfile dist/create-elysiajs"
+    "build": "bun build src/index.ts --compile --outfile dist/create-ely"
   },
   "engines": {
     "bun": ">=1.0.0"
