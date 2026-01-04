@@ -158,9 +158,7 @@ async function main() {
     await initializeGit(targetDir);
 
     // Step 6: Show success message
-    clack.outro(
-      getNextStepsMessage(projectType, projectName, targetDir),
-    );
+    clack.outro(getNextStepsMessage(projectType, projectName, targetDir));
   } catch (error) {
     clack.cancel(
       error instanceof Error ? error.message : 'Unknown error occurred',

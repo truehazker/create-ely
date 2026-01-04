@@ -11,9 +11,7 @@
 
 The fastest way to scaffold production-ready [ElysiaJS](https://elysiajs.com) projects with [Bun](https://bun.sh).
 
-<div align="center">
-  <video src="./assets/demo.mp4" width="100%" controls></video>
-</div>
+![Demo](https://github.com/user-attachments/assets/256757ca-92dd-49f3-ba8f-2dda62410aa7)
 
 ## Quick Start
 
