@@ -18,7 +18,9 @@ if (existsSync(templatesPath)) {
 
 // Zip file must exist in installed package
 if (!existsSync(zipPath)) {
-  console.error('ERROR: templates.zip not found. Installation may be corrupted.');
+  console.error(
+    'ERROR: templates.zip not found. Installation may be corrupted.',
+  );
   process.exit(1);
 }
 
@@ -30,7 +32,12 @@ try {
     throw new Error('Templates folder was not created after extraction');
   }
 } catch (error) {
-  console.error('ERROR: Failed to extract templates:', error instanceof Error ? error.message : error);
-  console.error('Report this issue: https://github.com/truehazker/create-ely/issues');
+  console.error(
+    'ERROR: Failed to extract templates:',
+    error instanceof Error ? error.message : error,
+  );
+  console.error(
+    'Report this issue: https://github.com/truehazker/create-ely/issues',
+  );
   process.exit(1);
 }

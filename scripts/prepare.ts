@@ -34,6 +34,9 @@ try {
 
   console.log('✓ templates.zip created successfully');
 } catch (error) {
-  console.error('ERROR: Failed to create templates.zip:', error instanceof Error ? error.message : error);
+  console.error(
+    'ERROR: Failed to create templates.zip:',
+    error instanceof Error ? error.message : error,
+  );
   process.exit(1);
 }
