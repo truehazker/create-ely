@@ -49,7 +49,7 @@ function Users() {
             <>
               <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
                 <p className="text-sm text-gray-600">
-                  Showing {users.length} {users.length === 1 ? 'user' : 'users'}
+                  Showing {users.length} items
                 </p>
               </div>
               <div className="divide-y divide-gray-200">
