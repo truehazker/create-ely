@@ -1,27 +1,23 @@
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { UserPlus } from 'lucide-react';
-import { api } from '@/shared/api/client';
+import { usersQueryOptions } from '@/features/users/queries';
 
 export const Route = createFileRoute('/users/')({
   component: Users,
-  loader: async () => {
-    const { data, error } = await api.users.get({
-      query: {
-        limit: 100,
-        offset: 0,
-      },
-    });
-
-    if (error) {
-      throw new Error(error.value as string);
-    }
-
-    return { users: data?.users ?? [], total: data?.total ?? 0 };
-  },
 });
 
 function Users() {
-  const { users, total } = Route.useLoaderData();
+  const {
+    data,
+    error,
+    isPending,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(usersQueryOptions);
+
+  const users = data?.pages.flatMap((page) => page.users) ?? [];
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -38,7 +34,13 @@ function Users() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          {users.length === 0 ? (
+          {isPending ? (
+            <div className="p-8 text-center text-gray-500">
+              Loading users...
+            </div>
+          ) : error && !data ? (
+            <div className="p-8 text-center text-red-600">{error.message}</div>
+          ) : users.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               <p className="text-lg mb-2">No users found</p>
               <p className="text-sm">Create your first user to get started.</p>
@@ -47,7 +49,7 @@ function Users() {
             <>
               <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
                 <p className="text-sm text-gray-600">
-                  Showing {users.length} of {total} users
+                  Showing {users.length} items
                 </p>
               </div>
               <div className="divide-y divide-gray-200">
@@ -70,6 +72,25 @@ function Users() {
                   </div>
                 ))}
               </div>
+              {(hasNextPage || error) && (
+                <div className="px-6 py-4 border-t border-gray-200 text-center">
+                  {hasNextPage && (
+                    <button
+                      type="button"
+                      onClick={() => fetchNextPage()}
+                      disabled={isFetchingNextPage}
+                      className="inline-flex items-center px-4 py-2 text-sm font-medium text-cyan-700 bg-cyan-50 rounded-md hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      {isFetchingNextPage ? 'Loading...' : 'Load more'}
+                    </button>
+                  )}
+                  {error && (
+                    <p className="mt-2 text-sm text-red-600" role="alert">
+                      {error.message}
+                    </p>
+                  )}
+                </div>
+              )}
             </>
           )}
         </div>

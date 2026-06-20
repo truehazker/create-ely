@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { fileURLToPath, URL } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import { devtools } from '@tanstack/devtools-vite';
@@ -12,6 +13,7 @@ export default defineConfig({
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
+      routeFileIgnorePattern: '\\.(test|spec)\\.[jt]sx?$',
     }),
     viteReact(),
     tailwindcss(),
@@ -23,5 +25,8 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+  },
+  test: {
+    environment: 'jsdom',
   },
 });

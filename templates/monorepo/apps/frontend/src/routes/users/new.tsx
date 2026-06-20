@@ -1,5 +1,7 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
+import { usersQueryOptions } from '@/features/users/queries';
 import { api } from '@/shared/api/client';
 
 export const Route = createFileRoute('/users/new')({
@@ -8,6 +10,7 @@ export const Route = createFileRoute('/users/new')({
 
 function NewUser() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -16,7 +19,7 @@ function NewUser() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
@@ -25,11 +28,14 @@ function NewUser() {
       const { data, error: apiError } = await api.users.post(formData);
 
       if (apiError) {
-        setError(apiError.value);
+        setError(apiError.value?.message ?? 'Failed to create user');
         return;
       }
 
       if (data) {
+        await queryClient.invalidateQueries({
+          queryKey: usersQueryOptions.queryKey,
+        });
         navigate({ to: '/users' });
       }
     } catch (err) {
@@ -55,7 +61,10 @@ function NewUser() {
         </h1>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+          <div
+            role="alert"
+            className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md"
+          >
             <p className="text-sm text-red-800">{error}</p>
           </div>
         )}
