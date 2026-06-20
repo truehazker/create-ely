@@ -23,9 +23,10 @@ try {
     unlinkSync(zipPath);
   }
 
-  // Create zip archive
+  // Create zip archive, skipping local-only artifacts that must never ship.
+  const excluded = /(^|[/\\])(node_modules|dist)([/\\]|$)|(^|[/\\])\.git([/\\]|$)|(^|[/\\])\.env$/;
   const zip = new AdmZip();
-  zip.addLocalFolder(templatesPath);
+  zip.addLocalFolder(templatesPath, '', (entry) => !excluded.test(entry));
   zip.writeZip(zipPath);
 
   if (!existsSync(zipPath)) {
