@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-21
+
+### Added
+
+- Frontend template now integrates TanStack Query (React Query) for users data, backed by the backend v0.7.0 cursor-based API
+
+### Changed
+
+- Updated backend boilerplate submodule to v0.7.0
+- Upgraded frontend template dependencies and tooling (Vite, Biome, TypeScript, React 19 types)
+
+### Fixed
+
+- Replaced deprecated `React.FormEvent` with `React.SubmitEvent` in the user-create form
+
 ## [0.1.5] - 2026-01-04
 
 ### Fixed
