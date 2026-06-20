@@ -8,7 +8,7 @@ async function fetchUsers(cursor?: string) {
     query: cursor ? { limit: PAGE_SIZE, cursor } : { limit: PAGE_SIZE },
   });
   if (error) {
-    throw new Error(error.value.message ?? 'Failed to load users');
+    throw new Error(error.value?.message ?? 'Failed to load users');
   }
   return data;
 }

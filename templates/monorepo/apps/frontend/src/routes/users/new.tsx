@@ -28,7 +28,7 @@ function NewUser() {
       const { data, error: apiError } = await api.users.post(formData);
 
       if (apiError) {
-        setError(apiError.value.message ?? 'Failed to create user');
+        setError(apiError.value?.message ?? 'Failed to create user');
         return;
       }
 
