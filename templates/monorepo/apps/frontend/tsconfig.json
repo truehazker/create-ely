@@ -19,9 +19,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      // Lets the backend's own `src/*` imports resolve when Eden infers the App type.
+      "src/*": ["../backend/src/*"]
     }
   }
 }

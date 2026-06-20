@@ -8,6 +8,6 @@
     "build:frontend": "bun --filter=frontend run build"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.10"
+    "@biomejs/biome": "2.5.0"
   }
 }

@@ -32,7 +32,7 @@ const UsersNewRoute = UsersNewRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/users/new': typeof UsersNewRoute
-  '/users': typeof UsersIndexRoute
+  '/users/': typeof UsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -47,7 +47,7 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/users/new' | '/users'
+  fullPaths: '/' | '/users/new' | '/users/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/users/new' | '/users'
   id: '__root__' | '/' | '/users/new' | '/users/'
@@ -71,7 +71,7 @@ declare module '@tanstack/react-router' {
     '/users/': {
       id: '/users/'
       path: '/users'
-      fullPath: '/users'
+      fullPath: '/users/'
       preLoaderRoute: typeof UsersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
