@@ -5,14 +5,19 @@
 ```text
 templates/
 ├── backend -> monorepo/apps/backend  # Symlink (for standalone template)
-└── monorepo/
+├── monorepo/
+│   ├── apps/
+│   │   ├── backend/                  # Git submodule (elysia-boilerplate)
+│   │   └── frontend/                 # React + TanStack Router
+│   └── package.json
+└── monorepo-svelte/
     ├── apps/
     │   ├── backend/                  # Git submodule (elysia-boilerplate)
-    │   └── frontend/
+    │   └── frontend/                 # SvelteKit + Svelte 5
     └── package.json
 ```
 
-The backend is a **git submodule** at `templates/monorepo/apps/backend` pointing to [elysia-boilerplate](https://github.com/truehazker/elysia-boilerplate). The standalone backend template is a symlink to the submodule.
+The backend is a **git submodule** pointing to [elysia-boilerplate](https://github.com/truehazker/elysia-boilerplate). Each monorepo template checks it out under its own `apps/backend`, so a backend bump means updating **both** submodules. The standalone backend template is a symlink to the submodule.
 
 > **Why this structure?** Bun workspaces don't follow symlinks when resolving workspace packages. The submodule must be inside `apps/` for `bun install` to work in the monorepo during development.
 
@@ -41,12 +46,14 @@ The submodule is pinned to a **specific release tag** (e.g., `v0.4.4`). This ens
 
 ## Updating Backend Template
 
+Both monorepo templates carry the submodule, so bump them together:
+
 ```bash
-cd templates/monorepo/apps/backend
-git fetch --tags
-git checkout v0.5.0  # desired version
-cd ../../../..
-git add templates/monorepo/apps/backend
+for t in monorepo monorepo-svelte; do
+  git -C "templates/$t/apps/backend" fetch --tags
+  git -C "templates/$t/apps/backend" checkout v0.5.0  # desired version
+  git add "templates/$t/apps/backend"
+done
 git commit -m "chore: bump backend template to v0.5.0"
 ```
 
@@ -61,8 +68,9 @@ bun run src/index.ts
 | What | Where |
 | ---- | ----- |
 | Backend template | [elysia-boilerplate](https://github.com/truehazker/elysia-boilerplate) repo |
-| Frontend template | `templates/monorepo/apps/frontend/` |
-| Monorepo config | `templates/monorepo/package.json` |
+| React frontend template | `templates/monorepo/apps/frontend/` |
+| Svelte frontend template | `templates/monorepo-svelte/apps/frontend/` |
+| Monorepo config | `templates/<variant>/package.json` |
 | CLI logic | `src/index.ts` |
 
 ## Development

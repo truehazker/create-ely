@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import * as clack from '@clack/prompts';
 import {
   DEFAULT_PROJECT_NAME,
+  MONOREPO_TYPES,
   PORTS,
   PROJECT_NAME_REGEX,
   TEMPLATE_TYPES,
@@ -88,15 +89,14 @@ function getNextStepsMessage(
   projectName: string,
   targetDir: string,
 ): string {
-  const projectTypeLabel =
-    projectType === TEMPLATE_TYPES.MONOREPO ? 'monorepo' : 'backend';
+  const isMonorepo = MONOREPO_TYPES.includes(projectType);
+  const projectTypeLabel = isMonorepo ? 'monorepo' : 'backend';
 
-  const nextSteps =
-    projectType === TEMPLATE_TYPES.MONOREPO
-      ? `  cd ${projectName}
+  const nextSteps = isMonorepo
+    ? `  cd ${projectName}
   bun run dev:backend  # Start backend on http://localhost:${PORTS.BACKEND}
   bun run dev:frontend # Start frontend on http://localhost:${PORTS.FRONTEND}`
-      : `  cd ${projectName}
+    : `  cd ${projectName}
   bun run dev          # Start backend on http://localhost:${PORTS.BACKEND}`;
 
   return `
@@ -132,8 +132,13 @@ async function main() {
       },
       {
         value: TEMPLATE_TYPES.MONOREPO,
-        label: 'Monorepo',
+        label: 'Monorepo (React)',
         hint: 'Backend + Frontend (React + TanStack Router)',
+      },
+      {
+        value: TEMPLATE_TYPES.MONOREPO_SVELTE,
+        label: 'Monorepo (Svelte)',
+        hint: 'Backend + Frontend (SvelteKit + Svelte 5)',
       },
     ],
   });

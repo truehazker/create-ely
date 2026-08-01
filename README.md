@@ -30,7 +30,8 @@ bun create ely my-project
 You'll be prompted to choose:
 
 - **Backend Only** - API-first ElysiaJS backend with PostgreSQL, Drizzle ORM, and OpenAPI docs
-- **Monorepo** - Full-stack setup with React frontend, TanStack Router, and shared workspace
+- **Monorepo (React)** - Full-stack setup with React frontend, TanStack Router, and shared workspace
+- **Monorepo (Svelte)** - Full-stack setup with SvelteKit frontend and shared workspace
 
 ## What's Included
 
@@ -42,10 +43,11 @@ You'll be prompted to choose:
 - Docker support for development and production
 - Environment validation with type safety
 
-**Monorepo Template:**
+**Monorepo Templates:**
 
 - Everything from Backend template
-- React frontend with TanStack Router and Vite
+- React frontend with TanStack Router and Vite, or SvelteKit frontend with Svelte 5
+- End-to-end typed API calls via Eden Treaty
 - Bun workspaces for seamless monorepo management
 
 ## Contributing

@@ -1,3 +1,6 @@
 [submodule "templates/monorepo/apps/backend"]
 	path = templates/monorepo/apps/backend
 	url = https://github.com/truehazker/elysia-boilerplate
+[submodule "templates/monorepo-svelte/apps/backend"]
+	path = templates/monorepo-svelte/apps/backend
+	url = https://github.com/truehazker/elysia-boilerplate

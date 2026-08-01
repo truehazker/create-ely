@@ -1,0 +1,54 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# production
+build
+dist
+out
+.tanstack
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local env files
+!.env.example
+.env
+.env.*
+
+# vercel
+.vercel
+
+# logs
+*.log
+*.trace
+
+# archives
+*.zip
+*.tar.gz
+*.tgz
+
+# bun
+*.bun
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store

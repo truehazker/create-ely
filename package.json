@@ -33,7 +33,9 @@
     "drizzle",
     "postgresql",
     "react",
-    "tanstack-router"
+    "tanstack-router",
+    "svelte",
+    "sveltekit"
   ],
   "bin": {
     "create-ely": "./src/index.ts"
