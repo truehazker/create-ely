@@ -49,12 +49,18 @@ The submodule is pinned to a **specific release tag** (e.g., `v0.4.4`). This ens
 Both monorepo templates carry the submodule, so bump them together:
 
 ```bash
-for t in monorepo monorepo-svelte; do
-  git -C "templates/$t/apps/backend" fetch --tags
-  git -C "templates/$t/apps/backend" checkout v0.5.0  # desired version
-  git add "templates/$t/apps/backend"
-done
-git commit -m "chore: bump backend template to v0.5.0"
+# Everything runs in a subshell so `set -e` never leaks into your own shell.
+# A failed fetch or checkout aborts before the commit, so the two submodules
+# can never land at different commits.
+(
+  set -e
+  for t in monorepo monorepo-svelte; do
+    git -C "templates/$t/apps/backend" fetch --tags
+    git -C "templates/$t/apps/backend" checkout v0.5.0  # desired version
+    git add "templates/$t/apps/backend"
+  done
+  git commit -m "chore: bump backend template to v0.5.0"
+)
 ```
 
 Always test after updating:

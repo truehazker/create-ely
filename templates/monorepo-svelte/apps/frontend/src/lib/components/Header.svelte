@@ -25,6 +25,7 @@
 </header>
 
 <aside
+  inert={!isOpen}
   class="fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col {isOpen
     ? 'translate-x-0'
     : '-translate-x-full'}"

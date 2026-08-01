@@ -9,8 +9,11 @@
   const submit = () => {
     submitting = true;
     return async ({ update }: { update: () => Promise<void> }) => {
-      submitting = false;
-      await update();
+      try {
+        await update();
+      } finally {
+        submitting = false;
+      }
     };
   };
 
