@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-02
+
+### Added
+
+- SvelteKit monorepo template (`monorepo-svelte`) with Svelte 5 runes, Eden Treaty end-to-end types, Tailwind v4, and Vitest split into jsdom and node projects
+
+### Changed
+
+- CLI now selects monorepo variants from a `MONOREPO_TYPES` list instead of hardcoded branches
+- Copy and zip steps exclude `dist`, `build`, and `.svelte-kit` so local build artifacts stay out of `templates.zip`
+- Aligned the React template's backend Biome schema with the pinned Biome version
+
 ## [0.2.0] - 2026-06-21
 
 ### Added
