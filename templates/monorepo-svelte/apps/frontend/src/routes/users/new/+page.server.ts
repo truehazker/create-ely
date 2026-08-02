@@ -3,6 +3,10 @@ import { api } from '$lib/api';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
+  /**
+   * Creates a user from the submitted form and redirects to the list.
+   * @returns A `fail` with the submitted values when the backend rejects it
+   */
   default: async ({ fetch, request }) => {
     const form = await request.formData();
     const body = {

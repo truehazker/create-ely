@@ -113,6 +113,10 @@ Happy coding! 🎉
     `;
 }
 
+/**
+ * Runs the CLI: prompts for a project name and template, then scaffolds it
+ * @returns Promise that resolves when scaffolding is complete
+ */
 async function main() {
   console.clear();
 

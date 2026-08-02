@@ -11,6 +11,13 @@ const PAGE_SIZE = 10;
 export const api = (fetcher: typeof fetch = fetch) =>
   treaty<App>(env.PUBLIC_API_URL || 'http://localhost:3000', { fetcher });
 
+/**
+ * Fetches one page of users from the backend.
+ * @param cursor - Cursor of the last seen user, omit for the first page
+ * @param fetcher - SvelteKit's `fetch`, so SSR requests are deduped
+ * @returns The page payload
+ * @throws When the backend answers with an error status
+ */
 export async function fetchUsers(cursor?: string, fetcher?: typeof fetch) {
   const { data, error } = await api(fetcher).users.get({
     query: cursor ? { limit: PAGE_SIZE, cursor } : { limit: PAGE_SIZE },
