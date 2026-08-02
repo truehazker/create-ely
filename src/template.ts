@@ -4,8 +4,8 @@ import * as clack from '@clack/prompts';
 import AdmZip from 'adm-zip';
 import {
   EXCLUDED_COPY_PATTERNS,
+  MONOREPO_TYPES,
   TEMPLATE_PATHS,
-  TEMPLATE_TYPES,
 } from './constants.ts';
 import { copyRecursive } from './utils.ts';
 
@@ -51,7 +51,7 @@ function ensureTemplatesExtracted(): void {
 
 /**
  * Sets up the project template by copying files and installing dependencies
- * @param projectType - The type of project template to use ('backend' or 'monorepo')
+ * @param projectType - The type of project template to use (see TEMPLATE_TYPES)
  * @param targetDir - The directory to create the project in
  * @returns Promise that resolves when template setup is complete
  */
@@ -70,7 +70,7 @@ export async function setupTemplate(
   copyRecursive(templateDir, targetDir, EXCLUDED_COPY_PATTERNS);
 
   // Handle template files: copy them to their intended locations
-  if (projectType === TEMPLATE_TYPES.MONOREPO) {
+  if (MONOREPO_TYPES.includes(projectType)) {
     const backendBiomeTemplate = join(
       templateDir,
       TEMPLATE_PATHS.BACKEND_BIOME_TEMPLATE,

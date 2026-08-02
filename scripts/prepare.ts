@@ -25,7 +25,7 @@ try {
 
   // Create zip archive, skipping local-only artifacts that must never ship.
   const excluded =
-    /(^|[/\\])(node_modules|dist)([/\\]|$)|(^|[/\\])\.git([/\\]|$)|(^|[/\\])\.env$/;
+    /(^|[/\\])(node_modules|dist|build|\.svelte-kit)([/\\]|$)|(^|[/\\])\.git([/\\]|$)|(^|[/\\])\.env$/;
   const zip = new AdmZip();
   zip.addLocalFolder(templatesPath, '', (entry) => !excluded.test(entry));
   zip.writeZip(zipPath);
